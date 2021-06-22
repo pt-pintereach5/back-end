@@ -29,9 +29,7 @@ module.exports = {
   testing: {
     client: 'pg',
     useNullAsDefault: true,
-    connection: {
-      filename: './articles.pg'
-    },
+    connection: process.env.TESTING_DATABASE_URL,
     migrations: {
       directory: './data/migrations',
     },
@@ -48,7 +46,7 @@ module.exports = {
   production: {
     client: 'pg',
     useNullAsDefault: true,
-    connection: process.env.DATA,
+    connection: process.env.DATABASE_URL,
     migrations: {
       directory: './data/migrations',
     },
