@@ -3,10 +3,10 @@
 module.exports = {
 
   development: {
-    client: 'sqlite3',
+    client: 'pg',
     useNullAsDefault: true,
     connection: {
-      filename: './articles.sqlite3'
+      filename: './articles.pg'
     },
     migrations: {
       directory: './data/migrations',
@@ -22,10 +22,10 @@ module.exports = {
   },
 
   testing: {
-    client: 'sqlite3',
+    client: 'pg',
     useNullAsDefault: true,
     connection: {
-      filename: './articles.sqlite3'
+      filename: './articles.pg'
     },
     migrations: {
       directory: './data/migrations',
@@ -41,10 +41,10 @@ module.exports = {
   },
 
   production: {
-    client: 'sqlite3',
+    client: 'pg',
     useNullAsDefault: true,
     connection: {
-      filename: './articles.sqlite3'
+      filename: './articles.pg'
     },
     migrations: {
       directory: './data/migrations',
