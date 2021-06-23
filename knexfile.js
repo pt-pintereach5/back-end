@@ -19,11 +19,6 @@ module.exports = {
     seeds: {
       directory: './data/seeds'
     },
-    pool: {
-      afterCreate: (conn, done) => {
-        conn.run('PRAGMA forign_keys = ON', done)
-      },
-    },
   },
 
   testing: {
@@ -36,11 +31,6 @@ module.exports = {
     seeds: {
       directory: './data/seeds'
     },
-    pool: {
-      afterCreate: (conn, done) => {
-        conn.run('PRAGMA forign_keys = ON', done)
-      },
-    },
   },
 
   production: {
@@ -52,11 +42,6 @@ module.exports = {
     },
     seeds: {
       directory: './data/seeds'
-    },
-    pool: {
-      afterCreate: (conn, done) => {
-        conn.run('PRAGMA forign_keys = ON', done)
-      },
     },
   },
 };
