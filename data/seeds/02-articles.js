@@ -1,9 +1,5 @@
 
 exports.seed = function(knex) {
-  // Deletes ALL existing entries
-  return knex('articles').truncate()
-    .then(function () {
-      // Inserts seed entries
       return knex('articles').insert([
         {article_id: 1, title: 'Why you should ignore politics',
          author: 'Martha Bay', source: 'CNN',
@@ -15,5 +11,4 @@ exports.seed = function(knex) {
          author: 'Reggie Stewart', source: 'Pinterest',
          contents: 'Egestas quis ipsum suspendisse ultrices gravida dictum fusce ut. Faucibus turpis in eu mi bibendum. Bibendum at varius vel pharetra vel turpis. Justo nec ultrices dui sapien eget mi. Fermentum posuere urna nec tincidunt praesent. Pharetra pharetra massa massa ultricies. Blandit cursus risus at ultrices mi tempus imperdiet nulla malesuada. Tellus in hac habitasse platea dictumst vestibulum rhoncus est. Cursus metus aliquam eleifend mi in. Arcu felis bibendum ut tristique et egestas quis. Sed velit dignissim sodales ut eu sem integer vitae. Suspendisse in est ante in nibh mauris cursus mattis. Placerat orci nulla pellentesque dignissim.'},
       ]);
-    });
 };

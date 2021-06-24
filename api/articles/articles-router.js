@@ -8,7 +8,7 @@ router.get('/api/articles', restricted, async (req, res) => {
         const articles = await Articles.find();
         res.status(200).json(articles);
     } catch(err) {
-
+        res.json(err.message)
     }
 });
 
@@ -25,10 +25,45 @@ router.get('/api/articles/:id', restricted, async (req, res) => {
 router.post('/api/articles', restricted, async (req, res) => {
     const article = req.body;
     try {
-        const newArticle = await Articles.create(article);
-        res.status(201).json(newArticle);
+        if (!article.title || !article.source || !article.author || !article.contents) {
+            res.status(400).json({ message: "please fill all required fields" });
+        } else {
+            const newArticle = await Articles.create(article);
+            res.status(201).json(newArticle);
+        }
     } catch(err) {
         res.json(err.message);
+    }
+});
+
+router.put('/api/articles/:id', async (req, res) => {
+    const {id} = req.params;
+    const article = req.body;
+    try {
+        const updArticle = await Articles.update(id, article);
+        res.status(200).json(updArticle);
+    } catch(err) {
+        res.status(500).json(err.message)
+    }
+});
+
+router.delete('/api/articles/:id', async (req, res) => {
+    const {id} = req.params;
+    try {
+        const newArticlesList = await Articles.remove(id);
+        res.status(200).json(newArticlesList);
+    } catch(err) {
+        res.status(500).json(err.message);
+    }
+});
+
+router.get('/api/articles/:id/categories', async (req, res) => {
+    const {id} = req.params;
+    try {
+        const artCategories = await Articles.findArticleCategories(id);
+        res.status(200).json(artCategories);
+    } catch(err) {
+        res.status(500).json(err.message);
     }
 });
 
