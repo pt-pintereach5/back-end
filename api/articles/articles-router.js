@@ -36,7 +36,7 @@ router.post('/api/articles', restricted, async (req, res) => {
     }
 });
 
-router.put('/api/articles/:id', async (req, res) => {
+router.put('/api/articles/:id', restricted, async (req, res) => {
     const {id} = req.params;
     const article = req.body;
     try {
@@ -47,7 +47,7 @@ router.put('/api/articles/:id', async (req, res) => {
     }
 });
 
-router.delete('/api/articles/:id', async (req, res) => {
+router.delete('/api/articles/:id', restricted, async (req, res) => {
     const {id} = req.params;
     try {
         const newArticlesList = await Articles.remove(id);
@@ -57,7 +57,7 @@ router.delete('/api/articles/:id', async (req, res) => {
     }
 });
 
-router.get('/api/articles/:id/categories', async (req, res) => {
+router.get('/api/articles/:id/categories', restricted, async (req, res) => {
     const {id} = req.params;
     try {
         const artCategories = await Articles.findArticleCategories(id);

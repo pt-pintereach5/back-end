@@ -9,12 +9,12 @@ function findBy(filter) {
 }
 
 async function add(user) {
-   const [id] = await db('users').insert(user);
-   return findById(id);
+   const [id] = await db('users').insert(user, "*");
+   return id;
 }
 
 module.exports = {
     findById,
     findBy,
-    add,
+    add
 }

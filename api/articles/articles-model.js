@@ -9,9 +9,8 @@ function findById(article_id) {
 }
 
 async function create(article) {
-    console.log(article);
-    const [article_id] = await db('articles').insert(article);
-    return findById(article_id);
+    const [article_id] = await db('articles').insert(article, "*");
+    return article_id;
 }
 
 async function update(article_id, article) {

@@ -5,16 +5,6 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const JWT_SECRET = require('../secrets/index');
 
-router.get('/api/auth/users/:id', async (req, res) => {
-    let {id} = req.params;
-    try {
-        const user = await Auth.findById(id);
-        res.status(200).json(user);
-    } catch(err) {
-        res.status(500).json(err.message);
-    }
-});
-
 router.post('/api/auth/register', async (req, res) => {
     let {username, password} = req.body;
     try {
