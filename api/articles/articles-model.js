@@ -28,7 +28,7 @@ function findArticleCategories(article_id) {
 }
 
 async function addArticleCategory(ids) {
-    const [id] = await db('articlesCategories').insert(ids, "*");
+    const [id] = await db('articles-categories').insert(ids, "*");
     return id;
 }
 

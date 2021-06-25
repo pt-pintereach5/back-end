@@ -12,7 +12,7 @@ exports.up = function(knex) {
         tbl.increments('category_id');
         tbl.string('category').unique().notNullable();
     })
-    .createTable('articlesCategories', tbl => {
+    .createTable('articles-categories', tbl => {
         tbl.increments();
         tbl.integer('article_id')
             .unsigned()
@@ -31,7 +31,7 @@ exports.up = function(knex) {
 
 exports.down = function(knex) {
   return knex.schema
-    .dropTableIfExists('articlesCategories')
+    .dropTableIfExists('articles-categories')
     .dropTableIfExists('categories')
     .dropTableIfExists('articles');
 };
