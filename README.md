@@ -25,3 +25,12 @@ Allows you to remove an article from the database. Also requires a valid JSON we
 
 GET /api/articles/:id/categories
 Allows you to see all the categories that an article belongs too. Also requires a valid JSON web token.
+
+POST /api/articles/:id
+Allows you to assign an article to a category. Requires you to provide an existing category. Also requires a valid JSON web token.
+
+GET /api/categories
+Allows you to see all categories. Also requires a valid JSON web token.
+
+POST /api/categories
+Allows you to create a new category. Requires you to provide a category name, or category as it is called in the database. Also requires a valid JSON web token.

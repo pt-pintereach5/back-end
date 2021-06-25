@@ -27,11 +27,17 @@ function findArticleCategories(article_id) {
     return db('articles').join('articles-categories as ac', 'ac.article_id', 'articles.article_id').leftJoin('categories', 'categories.category_id', 'ac.category_id').select('category').where('articles.article_id', '=', article_id);
 }
 
+async function addArticleCategory(ids) {
+    const [id] = await db('articlesCategories').insert(ids, "*");
+    return id;
+}
+
 module.exports = {
     find,
     findById,
     create,
     update,
     remove,
-    findArticleCategories
+    findArticleCategories,
+    addArticleCategory
 }

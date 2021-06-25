@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { restricted } = require('../auth/auth-middleware');
 const Articles = require('../articles/articles-model');
+const Categories = require('../categories/categories-model');
 
 router.get('/api/articles', restricted, async (req, res) => {
     try {
@@ -63,6 +64,20 @@ router.get('/api/articles/:id/categories', restricted, async (req, res) => {
         const artCategories = await Articles.findArticleCategories(id);
         res.status(200).json(artCategories);
     } catch(err) {
+        res.status(500).json(err.message);
+    }
+});
+
+router.post('/api/articles/:id', restricted, async (req, res) => {
+    const {id} = req.params;
+    const category = req.body;
+    const categoryId = await Categories.findBy(category);
+    try {
+        const newAssign = await Articles.addArticleCategory({article_id: id, category_id: categoryId.category_id});
+        res.status(200).json(newAssign);
+    } catch(err) {
+        console.log(id)
+        console.log(categoryId);
         res.status(500).json(err.message);
     }
 });

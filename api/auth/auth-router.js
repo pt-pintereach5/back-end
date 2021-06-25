@@ -26,6 +26,7 @@ router.post('/api/auth/login', async (req, res) => {
         try {
             if (bcrypt.compareSync(password, user.password)) {
                 const token = makeToken(user);
+                console.log(user)
                 res.json({ message: `Welcome back ${username}!`, token });
             }
             else {
