@@ -9,3 +9,5 @@ describe('articles router', () => {
         expect(res.body).toMatchObject({ message: 'token required' });
     });
 });
+
+// the test passes, but cannot be used with NODE_ENV. DB_ENV ruins the rest of the server, so it cannot be used.
