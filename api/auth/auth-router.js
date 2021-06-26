@@ -7,6 +7,9 @@ const JWT_SECRET = require('../secrets/index');
 
 router.post('/api/auth/register', async (req, res) => {
     let {username, password} = req.body;
+    if (!username || !password) {
+        res.status(400).json({ message: 'please provide a username and password' });
+    } else {
     try {
         const hash = bcrypt.hashSync(password, 8);
         password = hash;
@@ -15,19 +18,19 @@ router.post('/api/auth/register', async (req, res) => {
     } catch(err) {
         res.status(500).json({ error: err.message });
     }
+    }
 });
 
 router.post('/api/auth/login', async (req, res) => {
     let {username, password} = req.body;
     const user = await Auth.findBy({username});
     if (!user) {
-        res.status(401).json({ message: "Invalid credentials" });
+        res.status(404).json({ message: "There is no user with that username" });
     } else {
         try {
             if (bcrypt.compareSync(password, user.password)) {
                 const token = makeToken(user);
-                console.log(user)
-                res.json({ message: `Welcome back ${username}!`, token });
+                res.status(200).json({ message: `Welcome back ${username}!`, token });
             }
             else {
                 res.status(401).json({ message: 'Invalid credentials' });

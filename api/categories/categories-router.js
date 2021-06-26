@@ -14,12 +14,10 @@ router.get('/api/categories', restricted, async (req, res) => {
 
 router.post('/api/categories', restricted, async (req, res) => {
     const category = req.body;
-    console.log(category);
     try {
         const newCategory = await Categories.create(category);
         res.status(201).json(newCategory);
     } catch(err) {
-        //console.log(category);
         res.status(500).json(err.message);
     }
 });
